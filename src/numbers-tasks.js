@@ -428,7 +428,7 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return Boolean(number);
+  return Number.isNaN(number);
 }
 
 /**
@@ -443,8 +443,7 @@ function isNumber(number) {
  * '5'  => false
  */
 function isInteger(number) {
-  if (number.toFixed() === number) return true;
-  return false;
+  return Number.isInteger(number);
 }
 
 /**
@@ -457,8 +456,8 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
@@ -475,8 +474,8 @@ function getFloatOnString(/* str */) {
  * '1.234', 2           => 1
  * '10', 8              => 1
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -491,7 +490,7 @@ function getIntegerOnString(/* str, base */) {
  * 2 ** 53  => false
  */
 function isSafeInteger(number) {
-  if (number === number.toFixed(0)) return true;
+  if (Number.isSafeInteger(number)) return true;
   return false;
 }
 
@@ -550,7 +549,7 @@ function roundToNearestInteger(number) {
  * -5.5 => -5
  */
 function getIntegerPartNumber(number) {
-  return Math.floor(number);
+  return Math.trunc(number);
 }
 
 /**
@@ -612,7 +611,7 @@ function getRandomInteger(min, max) {
  * 3, 4 => 5
  */
 function getHypotenuse(a, b) {
-  return Math.sqrt(a * a + b * b);
+  return Math.hypot(a, b);
 }
 
 /**
