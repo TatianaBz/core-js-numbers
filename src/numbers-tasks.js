@@ -109,7 +109,7 @@ function getLinearEquationRoot(a, b) {
 function getAngleBetweenVectors(x1, y1, x2, y2) {
   const num1 = x1 * y1 + x2 * y2;
   const num2 = Math.sqrt(x1 * x1 + x2 * x2) * Math.sqrt(y1 * y1 + y2 * y2);
-  return Math.acos(num1 / num2);
+  return Math.cos(num1 / num2);
 }
 
 /**
@@ -319,8 +319,9 @@ function getSumOfDigits(num) {
  *   15  => false
  */
 function isPowerOfTwo(num) {
-  if (Number.isInteger(Math.log(num) / Math.log(2)) === 0) return false;
-  return true;
+  if (Number.isInteger(Math.log(Math.abs(num)) / Math.log(2)) === true)
+    return true;
+  return false;
 }
 
 /**
@@ -349,7 +350,7 @@ function getSine(num) {
  * 2, 2    => '10'
  */
 function numberToStringInBase(number, base) {
-  parseInt(number, 10).toString(base);
+  return parseInt(number, 10).toString(base);
 }
 
 /**
@@ -394,7 +395,7 @@ function toFixed(number, fractionDigits) {
  * 12.345, 4   => '12.35'
  */
 function toPrecision(number, precision) {
-  number.toPrecision(precision);
+  return number.toPrecision(precision);
 }
 
 /**
@@ -428,9 +429,8 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return Number.isNaN(number);
+  return Number.isFinite(number);
 }
-
 /**
  * Returns a boolean value indicating whether a number is an integer or not.
  *
@@ -504,8 +504,8 @@ function isSafeInteger(number) {
  * 5.9  => 5
  * -5.1 => -6
  */
-function roundToSmallestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
 }
 
 /**
@@ -565,7 +565,7 @@ function getIntegerPartNumber(number) {
  * 0.1, 0.2, 0.3 => 0.6
  */
 function getSumOfNumbers(x1, x2, x3) {
-  return x1 + x2 + x3;
+  return (x1 + x2 + x3).toFixed(2);
 }
 
 /**
@@ -628,11 +628,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  let sum = 0;
-  for (let i = 1; i <= number; i += 1) {
-    if (i % 2 !== 0) sum = +1;
-  }
-  return sum;
+  return Math.ceil(Math.abs(number) / 2);
 }
 
 module.exports = {
